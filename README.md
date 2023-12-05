@@ -1,7 +1,7 @@
-** Install Requirements
+** Install Requirements **
 
 - python3 -m pip install -r requirements.txt
 
-** Run
+** Run **
 
 - python3 2process-addSeatsData.py
