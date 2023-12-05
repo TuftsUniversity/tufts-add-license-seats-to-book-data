@@ -44,7 +44,7 @@ import xml.etree.ElementTree as et
 
 import pandas as pd
 import numpy as np
-from config import secrets_local
+
 Tk().withdraw()
 
 excel_file_path = askopenfilename(title="Choose Excel file with MMS IDs:")
