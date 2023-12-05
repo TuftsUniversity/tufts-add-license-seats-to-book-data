@@ -69,13 +69,20 @@ for index, row in lookup_titles_df.iterrows():
     tree_bib_record = et.ElementTree(et.fromstring(result.content.decode('utf-8')))
     root_bib_record = tree_bib_record.getroot()
 
-    try:
-        usage_restriction = root_bib_record.findall(".//ns1:datafield[@tag='AVE']/ns1:subfield[@code='n']", namespaces)[0]
-        usage_restriction = usage_restriction.text
-    except:
-        usage_restriction = ""
+    usage_restriction_list = []
+    # try:
+    for usage_restriction in root_bib_record.findall(".//ns1:datafield[@tag='AVE']/ns1:subfield[@code='n']", namespaces):
 
-    lookup_titles_df.loc[index, 'Seats'] = usage_restriction
+        print(usage_restriction.text)
+        usage_restriction_list.append(usage_restriction.text)
+        #print(usage_restriction.text)
+
+    #print(usage_restriction_list)
+
+# except:
+
+
+    lookup_titles_df.loc[index, 'Seats'] = "; ".join(usage_restriction_list)
 
 
 filename_base = re.sub(r'.+?([^\/]+)\.xlsx$', r'\1', excel_file_path)
